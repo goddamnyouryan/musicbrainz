@@ -14,16 +14,17 @@ module MusicBrainz
           date: (xml.xpath('./date').text rescue nil),
           asin: (xml.xpath('./asin').text rescue nil),
           barcode: (xml.xpath('./barcode').text rescue nil),
-          quality: (xml.xpath('./quality').text rescue nil)
+          quality: (xml.xpath('./quality').text rescue nil),
+          artwork: (xml.xpath('./cover-art-archive/artwork').text rescue nil)
         }
-        
+
         formats = (xml.xpath('./medium-list/medium/format') rescue []).map(&:text)
-        
+
         hash[:format] = formats.uniq.map do |format|
           format_count = formats.select{|f| f == format}.length
           format_count == 1 ? format : "#{format_count}x#{format}"
         end.join(' + ')
-        
+
         hash
       end
 
