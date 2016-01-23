@@ -98,7 +98,6 @@ module MusicBrainz
           else
             val.split("-").map(&:to_i)
           end
-          
           Date.new(*val)
         else
           val

@@ -11,7 +11,7 @@ module MusicBrainz
     field :asin, String
     field :barcode, String
     field :quality, String
-    field :artwork, String
+    field :artwork, TrueClass
 
     def tracks
       @tracks ||= client.load(:release, { id: id, inc: [:recordings, :media], limit: 100 }, {
